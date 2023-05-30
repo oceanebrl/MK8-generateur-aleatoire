@@ -1,0 +1,96 @@
+@import "../utils/variables.scss";
+
+.nav {
+  display: flex;
+  position: relative;
+
+  &__item {
+    overflow: hidden;
+    text-decoration: none;
+    color: white;
+    padding: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.4s ease;
+    position: relative;
+
+    &.active {
+      opacity: 1;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      height: 0.2rem;
+      width: 0%;
+      background-color: $softColor;
+      z-index: 3;
+      transition: all 0.3s ease-in;
+    }
+    &::before {
+      top: 0;
+      left: 0;
+    }
+    &::after {
+      bottom: 0;
+      right: 0;
+    }
+
+    &:hover {
+      opacity: 0.9;
+      transition: all 0.3s ease-in;
+    }
+
+    &:hover::after,
+    &:hover::before,
+    &.active::before,
+    &.active::after {
+      width: 100%;
+      transition: all 0.3s ease-in;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .nav {
+    &__item {
+      text-transform: capitalize;
+      font-size: 0.75rem;
+    }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .nav {
+    flex-wrap: wrap;
+    gap: 10%;
+    justify-content: space-between;
+    margin: 0 2rem;
+    &__item {
+      text-align: center;
+      width: 40%;
+      &:hover::after,
+      &.active::after {
+        width: 0%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .nav {
+    gap: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 240px) {
+  .nav {
+    flex-direction: column;
+    &__item {
+      width: 100%;
+    }
+  }
+}

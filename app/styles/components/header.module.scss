@@ -1,0 +1,58 @@
+@import "../utils/variables.scss";
+
+.header {
+  background-color: $deepColor;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  &__wrap {
+    max-width: $maxScreenWidth;
+    padding: 1.5rem 0;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.title {
+  color: #fff;
+  display: flex;
+  align-items: flex-end;
+  &__logo {
+    width: 350px;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 1340px) {
+  .header {
+    &__wrap {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .title {
+    font-size: 1rem;
+    &__logo {
+      width: 14rem;
+    }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .title {
+    font-size: 0.9rem;
+    flex-direction: column;
+    &__logo {
+      width: 10rem;
+    }
+  }
+  .header {
+    &__wrap {
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
+}
