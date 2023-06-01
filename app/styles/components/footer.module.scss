@@ -20,3 +20,9 @@
   color: $softColor;
   font-weight: 600;
 }
+
+@media screen and (max-width: 420px) {
+  .footer {
+    font-size: 0.7rem;
+  }
+}
