@@ -1,7 +1,7 @@
 function KartnDriver() {
   return (
     <main>
-      <h2>Choisis un pilote et sa compo'</h2>
+      <h2>Choisis un pilote et sa compo&apos;</h2>
     </main>
   );
 }
