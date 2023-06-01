@@ -1,0 +1,5 @@
+@mixin smoothBoxShadows($radius: 5px) {
+  border-radius: $radius;
+  box-shadow: 0 2px 4px #240a1c93;
+  padding: 1rem;
+}

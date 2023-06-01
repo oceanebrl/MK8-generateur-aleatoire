@@ -1,0 +1,56 @@
+@import "../utils/variables.scss", "../utils/mixins.scss";
+
+.wrap {
+  background-color: $bgMainColor;
+  @include smoothBoxShadows;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.title {
+  box-shadow: none;
+  background-color: transparent;
+  font-size: 5rem;
+  color: $softColor;
+}
+
+.paragraph {
+  font-size: 1.2rem;
+  margin: 2rem 0;
+  text-align: center;
+  &__link {
+    color: $softColor;
+    font-weight: 600;
+    &:hover {
+      color: $mainColor;
+    }
+  }
+}
+
+.image {
+  width: 30%;
+  height: auto;
+}
+
+@media screen and (max-width: 800px) {
+  .image {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .wrap {
+    flex-direction: column;
+  }
+  .title {
+    font-size: 2rem;
+  }
+  .paragraph {
+    font-size: 1rem;
+    margin: 1rem 0;
+  }
+  .image {
+    width: 60%;
+  }
+}
