@@ -17,9 +17,27 @@ function Navigation() {
         }`}>
         Pilote
       </Link>
-      <div className={styles.nav__item}>Véhicule</div>
-      <div className={styles.nav__item}>Pilote &amp; Véhicule</div>
-      <div className={styles.nav__item}>Course</div>
+      <Link
+        href="/kart"
+        className={`${styles.nav__item}  ${
+          pathname === "/kart" ? styles.active : ""
+        }`}>
+        Véhicule
+      </Link>
+      <Link
+        href="/kartndriver"
+        className={`${styles.nav__item}  ${
+          pathname === "/kartndriver" ? styles.active : ""
+        }`}>
+        Pilote &amp; Véhicule
+      </Link>
+      <Link
+        href="/courses"
+        className={`${styles.nav__item}  ${
+          pathname === "/courses" ? styles.active : ""
+        }`}>
+        Course
+      </Link>
     </nav>
   );
 }
