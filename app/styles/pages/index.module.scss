@@ -1,0 +1,76 @@
+@import "../utils/variables.scss", "../utils/mixins.scss",
+  "../modules/shellAnimation.scss";
+
+.pageWrap {
+  margin: 3rem 1rem;
+}
+
+.driverGrid {
+  display: grid;
+  grid-template-columns: 11% 11% 11% 11% 11% 11% 11% 11%;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: auto;
+  @include smoothBoxShadows;
+  background-color: lighten($softColor, 23);
+  border: 1rem solid $bgMainColor;
+}
+
+.driver {
+  cursor: pointer;
+  position: relative;
+
+  @include cursorAnimated;
+  &:nth-child(43) {
+    @include moveTheDLCCharacter;
+  }
+  &:nth-child(44) {
+    @include moveTheDLCCharacter(2);
+  }
+  &:nth-child(45) {
+    @include moveTheDLCCharacter(3);
+  }
+  &:nth-child(46) {
+    @include moveTheDLCCharacter(4);
+  }
+  &:nth-child(47) {
+    @include moveTheDLCCharacter(5);
+  }
+  &:nth-child(48) {
+    @include moveTheDLCCharacter(6);
+  }
+  &__image {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 500px) {
+  .pageWrap {
+    margin: 2rem 0;
+  }
+  .driverGrid {
+    border: none;
+  }
+  .option {
+    margin: 2rem;
+  }
+}
+
+@media screen and (max-width: 409px) {
+  .pageWrap {
+    margin: 2rem 0;
+  }
+  .option {
+    margin: 1rem;
+    flex-direction: column;
+  }
+}

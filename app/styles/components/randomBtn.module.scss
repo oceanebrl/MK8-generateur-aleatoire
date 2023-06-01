@@ -1,0 +1,37 @@
+@import "../utils/variables.scss", "../utils/mixins.scss",
+  "../modules/shellAnimation.scss";
+
+.btn {
+  background-color: $softColor;
+  color: #fff;
+  @include smoothBoxShadows;
+  padding: 1rem 1rem;
+  border: 2px solid $deepColor;
+  font-weight: 800;
+  font-size: 1.2rem;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+  &:hover {
+    box-shadow: none;
+    background-color: $midColor;
+  }
+  &:hover .pinkShell {
+    animation: x 0.5s infinite;
+    -webkit-animation: x 0.5s infinite;
+    -moz-animation: x 0.5s infinite;
+    -o-animation: x 0.5s infinite;
+  }
+}
+
+.pinkShell {
+  margin: -1rem 0;
+  top: 0rem;
+  right: 10%;
+}
+
+@media screen and (max-width: 500px) {
+  .btn {
+    font-size: 0.8rem;
+  }
+}

@@ -3,3 +3,42 @@
   box-shadow: 0 2px 4px #240a1c93;
   padding: 1rem;
 }
+
+@mixin moveTheDLCCharacter($row: 1) {
+  grid-column: 8;
+  grid-row: $row;
+}
+
+@mixin cursorAnimated {
+  &:hover::after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -ms-transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    transform: scale(1);
+    background-image: url("../../../public/cursor.png");
+    background-size: 100% 100%;
+    animation: cursor-hover 0.8s infinite;
+  }
+}
+
+@keyframes cursor-hover {
+  0%,
+  100% {
+    -ms-transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    transform: scale(1);
+  }
+  60% {
+    -ms-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
