@@ -1,0 +1,22 @@
+@import "../utils/variables.scss", "../utils/mixins.scss";
+
+.footer {
+  background-color: $deepColor;
+  color: white;
+}
+
+.wrap {
+  max-width: $maxScreenWidth;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.highlight {
+  font-weight: 600;
+  color: $highlightColor;
+}
+
+.link {
+  color: $softColor;
+  font-weight: 600;
+}

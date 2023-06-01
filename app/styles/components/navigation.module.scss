@@ -44,10 +44,6 @@
       transition: all 0.3s ease-in;
     }
 
-    &.active {
-      opacity: 1;
-    }
-
     &:hover::after,
     &:hover::before,
     &.active::before,
@@ -62,12 +58,12 @@
   .nav {
     &__item {
       text-transform: capitalize;
-      font-size: 0.75rem;
+      font-size: 1rem;
     }
   }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 470px) {
   .nav {
     flex-wrap: wrap;
     gap: 10%;
@@ -85,12 +81,6 @@
 }
 
 @media screen and (max-width: 280px) {
-  .nav {
-    gap: 0.5rem;
-  }
-}
-
-@media screen and (max-width: 240px) {
   .nav {
     flex-direction: column;
     &__item {
