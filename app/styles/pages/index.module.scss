@@ -1,5 +1,4 @@
-@import "../utils/variables.scss", "../utils/mixins.scss",
-  "../modules/shellAnimation.scss";
+@import "../utils/variables.scss", "../utils/mixins.scss";
 
 .pageWrap {
   margin: 3rem 1rem;
@@ -19,8 +18,18 @@
 .driver {
   cursor: pointer;
   position: relative;
-
-  @include cursorAnimated;
+  &:hover::after,
+  &.selected::after {
+    @include cursorAnimated;
+  }
+  &__check {
+    position: absolute;
+    width: 40%;
+    bottom: 0;
+    right: 0;
+    height: auto;
+    z-index: 1;
+  }
   &:nth-child(43) {
     @include moveTheDLCCharacter;
   }
@@ -42,15 +51,47 @@
   &__image {
     width: 100%;
     height: auto;
+    &.picked {
+      filter: grayscale(1);
+      z-index: -1;
+      transform: scale(0.9);
+      opacity: 0.6;
+    }
   }
 }
 
 .option {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
   gap: 1rem;
   margin-bottom: 1rem;
+  &__btn {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-end;
+  }
+}
+
+.selectedDriver {
+  height: 100%;
+  text-align: center;
+  background-color: $deepColor;
+  flex-grow: 1;
+  padding: 1rem;
+  max-width: 200px;
+  @include smoothBoxShadows;
+  border: 0.5rem solid $softColor;
+  &__image {
+    height: 100%;
+  }
+  &__label {
+    font-family: "Handlee", Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    color: $softColor;
+    font-weight: 900;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -71,6 +112,15 @@
   }
   .option {
     margin: 1rem;
-    flex-direction: column;
+  }
+  .selectedDriver {
+    max-width: 100px;
+    border: 0.2rem solid $softColor;
+    &__image {
+      width: 100%;
+    }
+    &__label {
+      font-size: 1rem;
+    }
   }
 }

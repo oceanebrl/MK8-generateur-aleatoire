@@ -10,21 +10,19 @@
 }
 
 @mixin cursorAnimated {
-  &:hover::after {
-    content: " ";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    -ms-transform: scale(1);
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    transform: scale(1);
-    background-image: url("../../../public/cursor.png");
-    background-size: 100% 100%;
-    animation: cursor-hover 0.8s infinite;
-  }
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -ms-transform: scale(1);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  transform: scale(1);
+  background-image: url("../../../public/cursor.png");
+  background-size: 100% 100%;
+  animation: cursor-hover 0.8s infinite;
 }
 
 @keyframes cursor-hover {

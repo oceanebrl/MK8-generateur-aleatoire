@@ -1,5 +1,4 @@
-@import "../utils/variables.scss", "../utils/mixins.scss",
-  "../modules/shellAnimation.scss";
+@import "../utils/variables.scss", "../utils/mixins.scss";
 
 .btn {
   background-color: $softColor;
@@ -22,12 +21,6 @@
     -moz-animation: x 0.5s infinite;
     -o-animation: x 0.5s infinite;
   }
-}
-
-.pinkShell {
-  margin: -1rem 0;
-  top: 0rem;
-  right: 10%;
 }
 
 @media screen and (max-width: 500px) {
