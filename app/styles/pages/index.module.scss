@@ -75,22 +75,31 @@
 }
 
 .selectedDriver {
-  height: 100%;
   text-align: center;
   background-color: $deepColor;
   flex-grow: 1;
   padding: 1rem;
   max-width: 200px;
+  height: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   @include smoothBoxShadows;
   border: 0.5rem solid $softColor;
+  &.empty {
+    visibility: hidden;
+  }
   &__image {
-    height: 100%;
+    width: 80%;
+    height: auto;
   }
   &__label {
     font-family: "Handlee", Arial, Helvetica, sans-serif;
     font-size: 1.5rem;
     color: $softColor;
     font-weight: 900;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -106,7 +115,8 @@
   }
 
   .selectedDriver {
-    max-width: 100px;
+    max-width: 120px;
+    height: 130px;
     border: 0.2rem solid $softColor;
     &__image {
       width: 100%;

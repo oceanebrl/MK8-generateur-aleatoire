@@ -110,18 +110,25 @@ export default function Home() {
             />
             <OptionBtn name="Reset" btnFunction={resetDriver} />
           </div>
-          {lastPickedDriver && (
-            <div className={styles.selectedDriver}>
-              <Image
-                src={lastPickedDriver.image}
-                alt={lastPickedDriver.name}
-                className={styles.selectedDriver__image}
-              />
-              <p className={styles.selectedDriver__label}>
-                {lastPickedDriver.name}
-              </p>
-            </div>
-          )}
+          <div
+            className={`${styles.selectedDriver} ${
+              !lastPickedDriver && styles.empty
+            }`}>
+            {lastPickedDriver && (
+              <>
+                <Image
+                  src={lastPickedDriver.image}
+                  alt={lastPickedDriver.name}
+                  className={styles.selectedDriver__image}
+                />
+                <p
+                  className={styles.selectedDriver__label}
+                  title={lastPickedDriver.name}>
+                  {lastPickedDriver.name}
+                </p>
+              </>
+            )}
+          </div>
         </div>
         <div className={styles.driverGrid}>
           {driverList.map((driver) => (
