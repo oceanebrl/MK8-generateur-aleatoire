@@ -74,19 +74,29 @@
 }
 
 @media screen and (max-width: 580px) {
+  .modal {
+    padding: 0;
+  }
   .wrap {
     flex-direction: column;
     gap: 0rem;
   }
   .paragraph {
-    margin: 1rem 0 0.5rem 1rem;
+    margin: 1rem 0 0 0;
+    padding: 0;
+    font-size: 0.9rem;
+    span {
+      font-size: 0.7rem;
+    }
   }
   .img {
+    width: 25%;
     margin-bottom: 1rem;
   }
   .btnWrap {
     flex-direction: column;
     justify-content: center;
     width: 100%;
+    padding: 0.5rem;
   }
 }
