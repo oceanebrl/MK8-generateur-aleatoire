@@ -104,15 +104,7 @@
   .option {
     margin: 2rem;
   }
-}
 
-@media screen and (max-width: 409px) {
-  .pageWrap {
-    margin: 2rem 0;
-  }
-  .option {
-    margin: 1rem;
-  }
   .selectedDriver {
     max-width: 100px;
     border: 0.2rem solid $softColor;
@@ -121,6 +113,15 @@
     }
     &__label {
       font-size: 1rem;
+    }
+  }
+
+  @media screen and (max-width: 409px) {
+    .pageWrap {
+      margin: 2rem 0;
+    }
+    .option {
+      margin: 1rem;
     }
   }
 }
