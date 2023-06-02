@@ -1,0 +1,87 @@
+@import "../utils/variables.scss", "../utils/mixins.scss";
+
+.page {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba($deepColor, 0.3);
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  width: 50%;
+  background-color: $bgMainColor;
+  @include smoothBoxShadows;
+}
+
+.wrap {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5rem;
+}
+
+.img {
+  width: 20%;
+  height: auto;
+}
+
+.paragraph {
+  margin: 2rem 0;
+  font-size: 1.3rem;
+  text-align: justify;
+  p {
+    margin-bottom: 2rem;
+  }
+  span {
+    font-size: 1rem;
+    font-weight: 800;
+    color: $softColor;
+  }
+}
+
+.btnWrap {
+  width: 50%;
+  display: flex;
+  gap: 1rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .modal {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .img {
+    width: 30%;
+    height: auto;
+  }
+
+  .paragraph {
+    font-size: 1rem;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .wrap {
+    flex-direction: column;
+    gap: 0rem;
+  }
+  .paragraph {
+    margin: 1rem 0 0.5rem 1rem;
+  }
+  .img {
+    margin-bottom: 1rem;
+  }
+}

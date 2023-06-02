@@ -76,7 +76,7 @@
 
 .selectedDriver {
   text-align: center;
-  background-color: $deepColor;
+  background-color: lighten($softColor, 23);
   flex-grow: 1;
   padding: 1rem;
   max-width: 200px;

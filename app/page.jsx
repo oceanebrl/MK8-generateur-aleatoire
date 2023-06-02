@@ -5,9 +5,11 @@ import Image from "next/image";
 import styles from "./styles/pages/index.module.scss";
 
 import { driverList } from "@/datas/driverList";
-import OptionBtn from "./components/optionBtn";
+import OptionBtn from "./components/OptionBtn";
+import Modal from "./components/Modal";
 
 import checkMark from "@/public/check.png";
+import toadworth from "@/public/illustrations/toadsworth.png";
 
 export default function Home() {
   // on prépare des states pour enregistrés les pilotes sauvegardés
@@ -40,7 +42,7 @@ export default function Home() {
     // si on n'a plus aucun pilote de disponible, on vient mettre une alerte
     // sûrement à remplacer par un modal
     if (remainingChoices.length === 0) {
-      alert("Tous les pilotes ont déjà été choisis");
+      setIsModalOpen(true);
       return;
     }
     // on vient faire un tirage sur les pilotes restants
@@ -98,9 +100,38 @@ export default function Home() {
     );
   };
 
+  // on s'occupe ici de notre modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const closeModalAndResetDriver = () => {
+    resetDriver();
+    setIsModalOpen(false);
+  };
+
   return (
     <main>
       <h2>Choisis ton pilote</h2>
+      {isModalOpen && (
+        <Modal
+          title="Il semblerait que tous les pilotes ont été choisis"
+          modalImg={toadworth}
+          modalImgAlt="Papy Champi"
+          btnFunctionReset={closeModalAndResetDriver}
+          btnFunctionClose={closeModal}>
+          <p>Eh bien, il n&apos;y a plus de pilotes disponibles.</p>
+          <p>Tu devrais réinitialiser le tableau&#8239;!</p>
+          <p>
+            Ou tu peux déselectionner certains pilotes en cliquant sur leur tête
+            manuellement
+            <br />
+            <span>ou... tu peux faire ce que tu veux - littéralement.</span>
+          </p>
+        </Modal>
+      )}
       <section className={styles.pageWrap}>
         <div className={styles.option}>
           <div className={styles.option__btn}>
