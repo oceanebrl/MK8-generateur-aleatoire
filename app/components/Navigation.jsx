@@ -20,21 +20,21 @@ function Navigation() {
       <Link
         href="/kart"
         className={`${styles.nav__item}  ${
-          pathname === "/kart" ? styles.active : ""
+          pathname === "/kart/" ? styles.active : ""
         }`}>
         Véhicule
       </Link>
       <Link
         href="/kartndriver"
         className={`${styles.nav__item}  ${
-          pathname === "/kartndriver" ? styles.active : ""
+          pathname === "/kartndriver/" ? styles.active : ""
         }`}>
         Pilote &amp; Véhicule
       </Link>
       <Link
         href="/courses"
         className={`${styles.nav__item}  ${
-          pathname === "/courses" ? styles.active : ""
+          pathname === "/courses/" ? styles.active : ""
         }`}>
         Course
       </Link>
