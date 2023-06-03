@@ -1,14 +1,16 @@
 "use client";
+"use client";
 import React, { useState, useEffect } from "react";
-
 import Image from "next/image";
 
 import styles from "../../styles/components/kart/gallery.module.scss";
 
+import arrowTop from "@/public/arrowTop.png";
+import arrowRight from "@/public/arrowRight.png";
+import arrowBottom from "@/public/arrowBottom.png";
+import arrowLeft from "@/public/arrowLeft.png";
+
 function Gallery({ itemList }) {
-  // d'abord, on vient vérifier la largeur de l'écran,
-  // nos galleries seront à la verticale avant 700px
-  // et à l'horizontale si l'écran est inférieure à 700px
   const [isWideScreen, setIsWideScreen] = useState(true);
   useEffect(() => {
     const handleResize = () => {
@@ -21,17 +23,17 @@ function Gallery({ itemList }) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  // permet de faire une sorte de caroussel manuel
-  const [index, setIndex] = useState(0);
 
-  const halfwayItems = Math.ceil(itemList.length / 2); // calcule la moitié de la liste
-  const itemHeight = isWideScreen ? 90 : 100; // définit la hauteur des items
-  // permet de savoir quand déplacer les items de bas en haut et viceverca
+  const [index, setIndex] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const [startPosition, setStartPosition] = useState(0);
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const halfwayItems = Math.ceil(itemList.length / 2);
+  const itemHeight = isWideScreen ? 90 : 100;
   const shuffleItem = halfwayItems * itemHeight;
-  // permet de garder les items au centre de rester visible
   const visibleItem = shuffleItem / 2;
 
-  // on va créer une fonction qui détermnera où se situe l'item central
   const determineItem = (itemIndex) => {
     if (index === itemIndex) return 0;
     if (itemIndex >= halfwayItems) {
@@ -52,10 +54,7 @@ function Gallery({ itemList }) {
     }
   };
 
-  // fonction pour les flèches
   const handleClick = (direction) => {
-    // afin d'éviter de faire deux fonctions qui font relativement la même chose,
-    // on va venir ajouter une direction avec un string "next"
     setIndex((prevIndex) => {
       if (direction === "next") {
         if (prevIndex + 1 > itemList.length - 1) {
@@ -70,17 +69,60 @@ function Gallery({ itemList }) {
     });
   };
 
+  const handleTouchStart = (e) => {
+    setIsScrolling(true);
+    setStartPosition(
+      isWideScreen ? e.touches[0].clientY : e.touches[0].clientX
+    );
+  };
+
+  const handleTouchMove = (e) => {
+    if (isScrolling) {
+      const currentPosition = isWideScreen
+        ? e.touches[0].clientY
+        : e.touches[0].clientX;
+      setScrollPosition(startPosition - currentPosition);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsScrolling(false);
+    if (Math.abs(scrollPosition) > 50) {
+      if (scrollPosition > 0) {
+        handleClick("next");
+      } else {
+        handleClick("prev");
+      }
+    }
+    setScrollPosition(0);
+  };
+
   return (
-    <div className={styles.wrap}>
-      <div onClick={() => handleClick("prev")}>up</div>
+    <div
+      className={styles.wrap}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}>
+      <div
+        className={styles.btn}
+        style={{
+          display: isWideScreen ? "block" : "none",
+          left: "50%",
+          transform: "translateX(-50%)",
+        }}>
+        <Image
+          src={arrowTop}
+          alt="Flèche qui pointe vers le haut"
+          className={styles.btn__img}
+        />
+      </div>
       <div className={styles.wrapGallery}>
         {itemList.map((item, i) => (
           <div
             key={item.id}
-            className={`${styles.item} ${index === i ? styles.active : ""} 
-              ${
-                Math.abs(determineItem(i)) <= visibleItem ? styles.visible : ""
-              }`}
+            className={`${styles.item} ${index === i ? styles.active : ""} ${
+              Math.abs(determineItem(i)) <= visibleItem ? styles.visible : ""
+            }`}
             style={{
               transform: `translate${isWideScreen ? "Y" : "X"}(${determineItem(
                 i
@@ -97,7 +139,19 @@ function Gallery({ itemList }) {
           </div>
         ))}
       </div>
-      <div onClick={() => handleClick("next")}>down</div>
+      <div
+        className={styles.btn}
+        style={{
+          display: isWideScreen ? "block" : "none",
+          left: "50%",
+          transform: "translateX(-50%)",
+        }}>
+        <Image
+          src={arrowBottom}
+          alt="Flèche qui pointe vers le bas"
+          className={styles.btn__img}
+        />
+      </div>
     </div>
   );
 }

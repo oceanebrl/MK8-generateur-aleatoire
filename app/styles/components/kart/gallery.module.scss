@@ -3,6 +3,16 @@
 .wrap {
   width: 30%;
   height: 25rem;
+  position: relative;
+  transition: all 0.3s ease-in;
+
+  &:hover .btn {
+    visibility: visible;
+    @media screen and (max-width: 699px) {
+      visibility: hidden;
+      overflow-y: scroll;
+    }
+  }
 
   @media screen and (max-width: 699px) {
     width: 100%;
@@ -84,6 +94,7 @@
   margin: 0;
   opacity: 0;
   transition: all 0.4s ease;
+  cursor: pointer;
   &__img {
     width: 100%;
     height: auto;
@@ -110,6 +121,25 @@
       opacity: 1;
       height: 60%;
     }
+  }
+}
+
+.btn {
+  position: absolute;
+  z-index: 3;
+  right: 50%;
+  transform: translateX(50%);
+  bottom: -3rem;
+  width: 5rem;
+  cursor: pointer;
+  visibility: hidden;
+  &:nth-child(1) {
+    bottom: initial;
+    top: -3rem;
+  }
+  &__img {
+    width: 100%;
+    height: auto;
   }
 }
 
