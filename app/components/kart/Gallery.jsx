@@ -6,11 +6,12 @@ import Image from "next/image";
 import styles from "../../styles/components/kart/gallery.module.scss";
 
 import arrowTop from "@/public/arrowTop.png";
-import arrowRight from "@/public/arrowRight.png";
 import arrowBottom from "@/public/arrowBottom.png";
-import arrowLeft from "@/public/arrowLeft.png";
 
 function Gallery({ itemList }) {
+  // d'abord, on vient vérifier la largeur de l'écran,
+  // nos galleries seront à la verticale avant 700px
+  // et à l'horizontale si l'écran est inférieure à 700px
   const [isWideScreen, setIsWideScreen] = useState(true);
   useEffect(() => {
     const handleResize = () => {
@@ -18,22 +19,19 @@ function Gallery({ itemList }) {
     };
     handleResize();
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
+  // permet de faire une sorte de caroussel manuel
   const [index, setIndex] = useState(0);
-  const [isScrolling, setIsScrolling] = useState(false);
-  const [startPosition, setStartPosition] = useState(0);
-  const [scrollPosition, setScrollPosition] = useState(0);
-
-  const halfwayItems = Math.ceil(itemList.length / 2);
-  const itemHeight = isWideScreen ? 90 : 100;
+  const halfwayItems = Math.ceil(itemList.length / 2); // calcule la moitié de la liste
+  const itemHeight = isWideScreen ? 90 : 100; // définit la hauteur des items
+  // permet de savoir quand déplacer les items de bas en haut et viceverca
   const shuffleItem = halfwayItems * itemHeight;
+  // permet de garder les items au centre de rester visible
   const visibleItem = shuffleItem / 2;
-
+  // on va créer une fonction qui détermnera où se situe l'item central
   const determineItem = (itemIndex) => {
     if (index === itemIndex) return 0;
     if (itemIndex >= halfwayItems) {
@@ -53,8 +51,10 @@ function Gallery({ itemList }) {
       return -(index - itemIndex) * itemHeight;
     }
   };
-
+  // fonction pour les flèches
   const handleClick = (direction) => {
+    // afin d'éviter de faire deux fonctions qui font relativement la même chose,
+    // on va venir ajouter une direction avec un string "next"
     setIndex((prevIndex) => {
       if (direction === "next") {
         if (prevIndex + 1 > itemList.length - 1) {
@@ -68,6 +68,11 @@ function Gallery({ itemList }) {
       return prevIndex - 1;
     });
   };
+
+  // permet de contrôler le scroll mannuel à la souris
+  const [isScrolling, setIsScrolling] = useState(false);
+  const [startPosition, setStartPosition] = useState(0);
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   const handleTouchStart = (e) => {
     setIsScrolling(true);
@@ -104,9 +109,9 @@ function Gallery({ itemList }) {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}>
       <div
+        onClick={() => handleClick("prev")}
         className={styles.btn}
         style={{
-          display: isWideScreen ? "block" : "none",
           left: "50%",
           transform: "translateX(-50%)",
         }}>
@@ -140,9 +145,9 @@ function Gallery({ itemList }) {
         ))}
       </div>
       <div
+        onClick={() => handleClick("next")}
         className={styles.btn}
         style={{
-          display: isWideScreen ? "block" : "none",
           left: "50%",
           transform: "translateX(-50%)",
         }}>
