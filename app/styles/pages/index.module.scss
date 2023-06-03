@@ -1,7 +1,7 @@
 @import "../utils/variables.scss", "../utils/mixins.scss";
 
 .pageWrap {
-  margin: 3rem 1rem;
+  @include pageWrap;
 }
 
 .driverGrid {
@@ -57,20 +57,6 @@
       transform: scale(0.9);
       opacity: 0.6;
     }
-  }
-}
-
-.option {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  &__btn {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: flex-end;
   }
 }
 

@@ -25,6 +25,10 @@
   animation: cursor-hover 0.8s infinite;
 }
 
+@mixin pageWrap {
+  margin: 3rem 1rem;
+}
+
 @keyframes cursor-hover {
   0%,
   100% {

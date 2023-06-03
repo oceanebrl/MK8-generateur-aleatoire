@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 import styles from "./styles/pages/index.module.scss";
+import optionStyle from "./styles/modules/optionStyle.module.scss";
 
 import { driverList } from "@/datas/driverList";
 import OptionBtn from "./components/OptionBtn";
@@ -133,8 +134,8 @@ export default function Home() {
         </Modal>
       )}
       <section className={styles.pageWrap}>
-        <div className={styles.option}>
-          <div className={styles.option__btn}>
+        <div className={optionStyle.option}>
+          <div className={optionStyle.option__btn}>
             <OptionBtn
               name="Choisis pour moi !"
               btnFunction={pickRandomDriver}
