@@ -6,8 +6,12 @@
   position: relative;
   transition: all 0.3s ease-in;
 
-  &:hover .btn {
+  &:hover .btn,
+  &:hover .btnFunction {
     visibility: visible;
+  }
+
+  &:hover .btn {
     @media screen and (max-width: 699px) {
       visibility: hidden;
       overflow-y: scroll;
@@ -129,17 +133,54 @@
   z-index: 3;
   right: 50%;
   transform: translateX(50%);
-  bottom: -3rem;
-  width: 5rem;
+  bottom: -1.5rem;
+  width: 3rem;
   cursor: pointer;
   visibility: hidden;
-  &:nth-child(1) {
+  &__top {
     bottom: initial;
-    top: -3rem;
+    top: -1.5rem;
   }
   &__img {
     width: 100%;
     height: auto;
+  }
+}
+
+.btnFunction {
+  position: absolute;
+  z-index: 3;
+  height: 3.5rem;
+  width: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: $bgMainColor;
+  border-radius: 50%;
+  padding: 1rem;
+  visibility: hidden;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    background-color: lighten($softColor, 23);
+  }
+  &.shuffle {
+    left: -1rem;
+    height: 3.2rem;
+  }
+  &.reset {
+    right: -1rem;
+  }
+  &__img {
+    height: 100%;
+    width: auto;
+  }
+  @media screen and (max-width: 699px) {
+    visibility: visible;
+    padding: 0.5rem;
+    height: 2rem;
+    &.shuffle {
+      height: 1.8rem;
+    }
   }
 }
 

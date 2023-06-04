@@ -7,8 +7,10 @@ import styles from "../../styles/components/kart/gallery.module.scss";
 
 import arrowTop from "@/public/arrowTop.png";
 import arrowBottom from "@/public/arrowBottom.png";
+import resetBtn from "@/public/resetBtn.png";
+import shuffleBtn from "@/public/shuffleBtn.png";
 
-function Gallery({ itemList }) {
+function Gallery({ itemList, resetFunction, shuffleFunction }) {
   // d'abord, on vient vérifier la largeur de l'écran,
   // nos galleries seront à la verticale avant 700px
   // et à l'horizontale si l'écran est inférieure à 700px
@@ -109,8 +111,26 @@ function Gallery({ itemList }) {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}>
       <div
+        className={`${styles.btnFunction} ${styles.shuffle}`}
+        onClick={shuffleFunction}>
+        <Image
+          src={shuffleBtn}
+          alt="Bouton pour mélanger"
+          className={styles.btnFunction__img}
+        />
+      </div>
+      <div
+        className={`${styles.btnFunction} ${styles.reset}`}
+        onClick={resetFunction}>
+        <Image
+          src={resetBtn}
+          alt="Bouton pour réinitialiser"
+          className={styles.btnFunction__img}
+        />
+      </div>
+      <div
         onClick={() => handleClick("prev")}
-        className={styles.btn}
+        className={`${styles.btn} ${styles.btn__top}`}
         style={{
           left: "50%",
           transform: "translateX(-50%)",
