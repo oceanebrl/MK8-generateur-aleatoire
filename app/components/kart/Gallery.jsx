@@ -4,17 +4,37 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 import styles from "../../styles/components/kart/gallery.module.scss";
+import pickedStyle from "../../styles/modules/pickedStyle.module.scss";
 
 import arrowTop from "@/public/arrowTop.png";
 import arrowBottom from "@/public/arrowBottom.png";
 import resetBtn from "@/public/resetBtn.png";
 import shuffleBtn from "@/public/shuffleBtn.png";
+import checkMark from "@/public/check.png";
 
-function Gallery({ itemList, resetFunction, shuffleFunction }) {
+function Gallery({
+  itemList,
+  resetFunction,
+  shuffleFunction,
+  setPicked,
+  picked,
+  setLastPicked,
+  lastPicked,
+  index,
+  setIndex,
+}) {
   // d'abord, on vient vérifier la largeur de l'écran,
   // nos galleries seront à la verticale avant 700px
   // et à l'horizontale si l'écran est inférieure à 700px
   const [isWideScreen, setIsWideScreen] = useState(true);
+
+  useEffect(() => {
+    const itemIndex = itemList.findIndex((item) => item.id === lastPicked?.id);
+    if (itemIndex !== -1) {
+      setIndex(itemIndex);
+    }
+  }, [itemList, lastPicked, setIndex]);
+
   useEffect(() => {
     const handleResize = () => {
       setIsWideScreen(window.innerWidth >= 700);
@@ -26,7 +46,7 @@ function Gallery({ itemList, resetFunction, shuffleFunction }) {
     };
   }, []);
   // permet de faire une sorte de caroussel manuel
-  const [index, setIndex] = useState(0);
+
   const halfwayItems = Math.ceil(itemList.length / 2); // calcule la moitié de la liste
   const itemHeight = isWideScreen ? 90 : 100; // définit la hauteur des items
   // permet de savoir quand déplacer les items de bas en haut et viceverca
@@ -104,6 +124,32 @@ function Gallery({ itemList, resetFunction, shuffleFunction }) {
     setScrollPosition(0);
   };
 
+  // fonction qui nous permettra de (dé)sélectionner mannuellement un item
+  const selectItem = (item, i) => {
+    // item déjà sélectionné
+    const isItemPicked = picked.find((pickedItem) => pickedItem.id === item.id);
+    // si l'item est déjà dans notre liste, on renvoie la liste en l'effaçant
+    if (isItemPicked) {
+      const updateItem = picked.filter(
+        (pickedItem) => pickedItem.id !== item.id
+      );
+      setPicked(updateItem);
+      setIndex(i);
+    } else {
+      // si  l'item n'est pas dans la liste, on voie les données
+      // en y incluant l'item, et on modifie le dernier item sélectionné
+      setPicked([...picked, item]);
+      setLastPicked(item);
+      setIndex(i);
+    }
+  };
+
+  // pour faciliter les classes, on met ici une fonction qui sait si un item
+  // est sélectionné ou non
+  const isItemPicked = (item) => {
+    return !!picked.find((picked) => picked.id === item.id);
+  };
+
   return (
     <div
       className={styles.wrap}
@@ -145,21 +191,32 @@ function Gallery({ itemList, resetFunction, shuffleFunction }) {
         {itemList.map((item, i) => (
           <div
             key={item.id}
-            className={`${styles.item} ${index === i ? styles.active : ""} ${
-              Math.abs(determineItem(i)) <= visibleItem ? styles.visible : ""
-            }`}
+            className={`${styles.item} ${pickedStyle.item} ${
+              index === i ? styles.active : ""
+            } ${Math.abs(determineItem(i)) <= visibleItem ? styles.visible : ""}
+            
+            ${lastPicked === item ? pickedStyle.selected : ""}`}
             style={{
               transform: `translate${isWideScreen ? "Y" : "X"}(${determineItem(
                 i
               )}px)`,
             }}
             onClick={() => {
-              setIndex(i);
+              selectItem(item, i);
             }}>
+            {isItemPicked(item) && (
+              <Image
+                src={checkMark}
+                className={pickedStyle.item__check}
+                alt="Coche"
+              />
+            )}
             <Image
               src={item.image}
               alt={item.name}
-              className={styles.item__img}
+              className={`${styles.item__img} ${pickedStyle.item__image} ${
+                isItemPicked(item) ? pickedStyle.picked : ""
+              }`}
             />
           </div>
         ))}

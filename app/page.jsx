@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import styles from "./styles/pages/index.module.scss";
 import optionStyle from "./styles/modules/optionStyle.module.scss";
+import pickedStyle from "./styles/modules/pickedStyle.module.scss";
 
 import { driverList } from "@/datas/driverList";
 import OptionBtn from "./components/OptionBtn";
@@ -165,26 +166,26 @@ export default function Home() {
         <div className={styles.driverGrid}>
           {driverList.map((driver) => (
             <div
-              className={`${styles.driver}
+              className={`${styles.driver} ${pickedStyle.item}
             ${
               driver.name === "point d'interrogation"
                 ? styles.unknownDriver
                 : ""
             } 
-            ${lastPickedDriver === driver ? styles.selected : ""}`}
+            ${lastPickedDriver === driver ? pickedStyle.selected : ""}`}
               key={driver.id}
               onClick={() => selectDriver(driver)}>
               {isDriverPicked(driver) && (
                 <Image
                   src={checkMark}
-                  className={styles.driver__check}
+                  className={pickedStyle.item__check}
                   alt="Coche"
                 />
               )}
               <Image
                 className={`${styles.driver__image} ${
-                  isDriverPicked(driver) ? styles.picked : ""
-                }`}
+                  pickedStyle.item__image
+                } ${isDriverPicked(driver) ? pickedStyle.picked : ""}`}
                 src={driver.image}
                 alt={driver.name}
                 draggable="false"

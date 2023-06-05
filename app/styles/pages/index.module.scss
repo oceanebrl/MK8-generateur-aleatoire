@@ -18,17 +18,9 @@
 .driver {
   cursor: pointer;
   position: relative;
-  &:hover::after,
-  &.selected::after {
-    @include cursorAnimated;
-  }
-  &__check {
-    position: absolute;
-    width: 40%;
-    bottom: 0;
-    right: 0;
+  &__image {
+    width: 100%;
     height: auto;
-    z-index: 1;
   }
   &:nth-child(43) {
     @include moveTheDLCCharacter;
@@ -47,16 +39,6 @@
   }
   &:nth-child(48) {
     @include moveTheDLCCharacter(6);
-  }
-  &__image {
-    width: 100%;
-    height: auto;
-    &.picked {
-      filter: grayscale(1);
-      z-index: -1;
-      transform: scale(0.9);
-      opacity: 0.6;
-    }
   }
 }
 
@@ -87,20 +69,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-}
 
-@media screen and (max-width: 500px) {
-  .pageWrap {
-    margin: 2rem 0;
-  }
-  .driverGrid {
-    border: none;
-  }
-  .option {
-    margin: 2rem;
-  }
-
-  .selectedDriver {
+  @media screen and (max-width: 500px) {
     max-width: 120px;
     height: 130px;
     border: 0.2rem solid $softColor;
