@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import Gallery from "../components/kart/Gallery";
+import Modal from "../components/Modal";
 
 import styles from "../styles/pages/kart.module.scss";
 import optionStyle from "../styles/modules/optionStyle.module.scss";
+import toadworth from "@/public/illustrations/toadsworth.png";
 
 import { kartLists } from "@/datas/kartList";
 import { wheelsList } from "@/datas/wheelList";
@@ -18,6 +20,9 @@ function Karts() {
   const [indexKart, setIndexKart] = useState(0);
   const [indexWheel, setIndexWheel] = useState(0);
   const [indexGlider, setIndexGlider] = useState(0);
+  // on vient également initier un state pour savoir
+  // quand ouvrir notre modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
   // on vient créer les states pour chaque élément
   // les véhicules
   const [pickedKarts, setPickedKarts] = useState([]);
@@ -43,7 +48,7 @@ function Karts() {
     });
     // deuxième tableau avec les derniers items qui ont été sélectionnés
     // on ne veut pas que nots derniers items créés un tableau,
-    //  donc on  doit les séparer
+    // donc on doit les séparer
     const savedLastItem = [
       { key: "lastPickedKart", state: setLastPickedKart },
       { key: "lastPickedWheels", state: setLastPickedWheel },
@@ -59,7 +64,6 @@ function Karts() {
   const pickRandomItem = (
     pickedItems,
     itemList,
-    alertMessage,
     setPickedItems,
     setLastPickedItem
   ) => {
@@ -67,7 +71,7 @@ function Karts() {
       (item) => !pickedItems.find((pickedItem) => pickedItem.id === item.id)
     );
     if (remainingChoices.length === 0) {
-      alert(alertMessage); // futur modal
+      setIsModalOpen(true);
       return;
     }
     const randomIndex = Math.floor(Math.random() * remainingChoices.length);
@@ -77,20 +81,13 @@ function Karts() {
   };
   // on l'implente pour les véhicules
   const pickRandomKart = () => {
-    pickRandomItem(
-      pickedKarts,
-      kartLists,
-      "Il n'y a plus de véhicule disponible",
-      setPickedKarts,
-      setLastPickedKart
-    );
+    pickRandomItem(pickedKarts, kartLists, setPickedKarts, setLastPickedKart);
   };
   // pour les roues
   const pickRandomWheel = () => {
     pickRandomItem(
       pickedWheels,
       wheelsList,
-      "Il n'y a plus de roue disponible",
       setPickedWheels,
       setLastPickedWheel
     );
@@ -100,7 +97,6 @@ function Karts() {
     pickRandomItem(
       pickedGliders,
       glidersList,
-      "Il n'y a plus de parapente disponible",
       setPickedGliders,
       setLastPickedGlider
     );
@@ -155,9 +151,208 @@ function Karts() {
     lastPickedGlider,
   ]);
 
+  // on paramètre ici ce que notrem modal doit afficher
+  // en fonction des items non disponibles
+  let modalTitle = "";
+  let modalChild = "";
+  if (
+    pickedKarts.length === kartLists.length &&
+    pickedWheels.length === wheelsList.length &&
+    pickedGliders.length === glidersList.length
+  ) {
+    modalTitle = "Okay, bon là t'as plus rien de disponible";
+    modalChild = (
+      <>
+        <p>
+          Moi la question que je me pose maintenant, c&apos;est comment
+          t&apos;as fait pour en arriver là&#8239;.
+        </p>
+        <p>
+          T&apos;as bourriné le bouton comme un fous ou t&apos;as
+          bidouillé&#8239;?
+          <br />
+          <span>
+            Dans les deux cas, t&apos;as juste gagné le droit de recommencer, ou
+            de ne rien faire de plus.
+          </span>
+        </p>
+      </>
+    );
+  } else if (
+    pickedWheels.length === wheelsList.length &&
+    pickedGliders.length === glidersList.length
+  ) {
+    modalTitle = "Bon, tu peux pas rouler ni planer";
+    modalChild = (
+      <>
+        <p>
+          T&apos;as plus de choix pour les roues et les déltaplanes. C&apos;est
+          un peu embêtant.
+        </p>
+        <p>
+          Enfin, c&apos;est embêtant à moins que tu sois là juste pour la
+          sélection de kart. Si c&apos;est le cas, tu devrais fermer le modal,
+          et survoler les karts pour voir les boutons s&apos;afficher.
+          <br />
+          <span>
+            De cette façon tu pourras randomiser que les karts. M&apos;enfin,
+            fais comme tu veux après. Tu peux réinitaliser ces deux trucs aussi.
+          </span>
+        </p>
+      </>
+    );
+  } else if (
+    pickedKarts.length === kartLists.length &&
+    pickedWheels.length === wheelsList.length
+  ) {
+    modalTitle = "Plus de karts plus de roues...";
+    modalChild = (
+      <>
+        <p>
+          On se croirait presque dans Mario Party, avec un mini-jeu uniquement
+          en déltaplane.
+        </p>
+        <p>
+          Mais bon, ce site est pour Mario Kart, pas Mario Déltaplane, donc tu
+          devrais les réinitialiser.
+          <br />
+          <span>
+            Ou alors ton but c&apos;est juste de changer ton déltaplane, dans ce
+            cas là, qui suis-je pour juger&#8239;?
+          </span>
+        </p>
+      </>
+    );
+  } else if (
+    pickedKarts.length === kartLists.length &&
+    pickedGliders.length === glidersList.length
+  ) {
+    modalTitle = "Pas de karts, pas de déltaplane, uh.";
+    modalChild = (
+      <>
+        <p>
+          Bon, peut-être qu&apos;on s&apos;en fiche du déltaplane, mais puisque
+          mon but est de te prévenir de toute éventualité, bah me voilà quand
+          même.
+        </p>
+        <p>
+          Tu devrais réinitialiser le kart <span>et la chose inutile</span>.
+          <br />
+          <span>Ou encore une fois, fais comme tu veux.</span>
+        </p>
+      </>
+    );
+  } else if (pickedKarts.length === kartLists.length) {
+    modalTitle = "Oops, pas sûr, mais ça va être dur sans kart";
+    modalChild = (
+      <>
+        <p>
+          Je veux pas t&apos;inquiéter hein, mais je crois que c&apos;est la
+          partie la plus importante de ta compo.
+        </p>
+        <p>
+          Tu peux les réiniatliser facilement ici si tu le veux.
+          <br />
+          <span>
+            Et si tu veux pas, bah y a pas grand-chose de plus que je peux faire
+            pour toi.
+          </span>
+        </p>
+      </>
+    );
+  } else if (pickedKarts.length === kartLists.length) {
+    modalTitle = "Oops, pas sûr, mais ça va être dur sans karts";
+    modalChild = (
+      <>
+        <p>
+          Je veux pas t&apos;inquiéter hein, mais je crois que c&apos;est la
+          partie la plus importante de ta compo.
+        </p>
+        <p>
+          Tu peux les réiniatliser facilement ici si tu le veux.
+          <br />
+          <span>
+            Et si tu veux pas, bah y a pas grand chose de plus que je peux faire
+            pour toi.
+          </span>
+        </p>
+      </>
+    );
+  } else if (pickedWheels.length === wheelsList.length) {
+    modalTitle = "Ca va moins bien rouler, ah. T'as compris ?";
+    modalChild = (
+      <>
+        <p>
+          L&apos;humour c&apos;est pas mon fort. Mais en tout cas, c&apos;est
+          sûr que ton kart va pas avancer sans roue.
+        </p>
+        <p>
+          Avant que le jeu soit entièrement en anti-gravité, ou carrément avec
+          des propulseurs, tu devrais réinitialiser les roues.
+          <br />
+          <span>Je pense quand même que ma blague été drôle.</span>
+        </p>
+      </>
+    );
+  } else if (pickedGliders.length === glidersList.length) {
+    modalTitle = "Mince, tu ne peux plus planer dans les airs";
+    modalChild = (
+      <>
+        <p>
+          Ouais... Je sais. Y a vraiment très de peu de parapentes, hein&#8239;?
+        </p>
+        <p>
+          M&apos;enfin, il n&apos;y en a plus de disponible. Tu devrais les
+          réiniatliser.
+        </p>
+        <p>
+          Ou alors tu t&apos;en fiches, et tu peux aussi fermer ce modal.
+          <br />
+          <span>
+            Entre nous, je crois que pas que ça fasse une grande différence.
+          </span>
+        </p>
+      </>
+    );
+  }
+
+  // fonction qui nous permet de reset les éléments après ouverture du modal
+  const resetInModal = () => {
+    if (pickedKarts.length === kartLists.length) {
+      resetKart();
+    }
+    if (pickedWheels.length === wheelsList.length) {
+      resetWheels();
+    }
+    if (pickedGliders.length === glidersList.length) {
+      resetGlider();
+    }
+  };
+
+  // allie fermeture du modal et reset
+  const resetCloseModal = () => {
+    resetInModal();
+    setIsModalOpen(false);
+  };
+
+  // fermeture du modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <main>
       <h2>Choisis la composition de ton véhicule</h2>
+      {isModalOpen && (
+        <Modal
+          title={modalTitle}
+          btnFunctionClose={closeModal}
+          btnFunctionReset={resetCloseModal}
+          modalImg={toadworth}
+          modalImgAlt="Papy Champi">
+          {modalChild}
+        </Modal>
+      )}
       <section className={styles.pageWrap}>
         <div className={optionStyle.option}>
           <div className={optionStyle.option__btn}>
