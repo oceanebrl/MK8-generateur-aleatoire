@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "../../styles/components/courses/coursesList.module.scss";
 
 function CoursesList({ cups }) {
-  const [openCups, setOpenCups] = useState(Array(cups.length).fill(false));
+  const [openCups, setOpenCups] = useState(Array(cups.length).fill(true));
 
   const handleCupOpen = (cupIndex) => {
     setOpenCups((prevOpenCups) => {
