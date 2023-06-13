@@ -1,21 +1,33 @@
-@import "../../utils/variables.scss", "../../utils/mixins.scss";
+@import "../../utils/variables.scss";
+@import "../../utils/mixins.scss";
 
 .courses {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 2.5rem;
+  justify-content: space-around;
+  gap: 1rem;
 }
 
 .cup {
+  height: 246px;
   display: flex;
   flex-wrap: wrap;
-  width: 48%;
+  width: 30%;
   gap: 1rem;
   position: relative;
   justify-content: space-around;
   align-items: center;
+  @media screen and (max-width: 1144px) {
+    width: 45%;
+  }
+  @media screen and (max-width: 700px) {
+    width: 60%;
+  }
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
   &__img {
     cursor: pointer;
     &.open {
@@ -30,19 +42,25 @@
     }
   }
   &__courses {
-    width: 46%;
+    width: 45%;
     opacity: 0;
     cursor: pointer;
-    transition: all 0.3s ease-in;
     &:hover {
       z-index: 5;
-      flex-grow: 1;
     }
     &__img {
       width: 100%;
       height: auto;
+      transition: all 0.3s ease-in;
+      border-radius: 15px;
+      &:hover {
+        z-index: 5;
+        transform: scale(1.2);
+        box-shadow: 0 2px 4px #240a1c93;
+      }
     }
   }
+
   &.open {
     .cup__courses {
       animation: fade-in 0.5s ease forwards;

@@ -42,11 +42,16 @@ function CoursesList({ cups }) {
           </div>
           {openCups[index] &&
             cup.courses.map((course) => (
-              <div key={course.id} className={styles.cup__courses}>
+              <div
+                key={course.id}
+                className={`${styles.cup__courses} ${
+                  openCups[index] ? styles.open : ""
+                }`}>
                 <Image
                   src={course.image}
                   alt={course.name}
                   className={styles.cup__courses__img}
+                  title={course.name}
                 />
               </div>
             ))}
