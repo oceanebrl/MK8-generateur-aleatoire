@@ -27,8 +27,7 @@ function CoursesList({ cups }) {
       {cups.map((cup, index) => (
         <div
           key={cup.id}
-          className={`${styles.cup} ${openCups[index] ? styles.open : ""}`}
-          onMouseLeave={() => handleCupClose(index)}>
+          className={`${styles.cup} ${openCups[index] ? styles.open : ""}`}>
           <div
             className={`${styles.cup__img} ${
               openCups[index] ? styles.open : ""
@@ -36,7 +35,6 @@ function CoursesList({ cups }) {
             <Image
               src={cup.image}
               alt={cup.name}
-              onMouseEnter={() => handleCupOpen(index)}
               title={cup.name}
               priority={true}
             />
