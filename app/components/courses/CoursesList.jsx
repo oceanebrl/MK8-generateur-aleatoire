@@ -38,6 +38,7 @@ function CoursesList({ cups }) {
               alt={cup.name}
               onMouseEnter={() => handleCupOpen(index)}
               title={cup.name}
+              priority={true}
             />
           </div>
           {openCups[index] &&
@@ -52,6 +53,7 @@ function CoursesList({ cups }) {
                   alt={course.name}
                   className={styles.cup__courses__img}
                   title={course.name}
+                  priority={true}
                 />
               </div>
             ))}
