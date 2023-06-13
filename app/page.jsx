@@ -11,7 +11,6 @@ import OptionBtn from "./components/OptionBtn";
 import Modal from "./components/Modal";
 
 import checkMark from "@/public/check.png";
-import toadworth from "@/public/illustrations/toadsworth.png";
 
 export default function Home() {
   // on prépare des states pour enregistrés les pilotes sauvegardés

@@ -30,7 +30,7 @@ function Karts() {
   // les roues
   const [pickedWheels, setPickedWheels] = useState([]);
   const [lastPickedWheel, setLastPickedWheel] = useState("");
-  // les parapentes
+  // les deltaplanes
   const [pickedGliders, setPickedGliders] = useState([]);
   const [lastPickedGlider, setLastPickedGlider] = useState("");
   // on vient vérifier si on a des éléments dans notre local storage
@@ -155,6 +155,7 @@ function Karts() {
   // en fonction des items non disponibles
   let modalTitle = "";
   let modalChild = "";
+
   if (
     pickedKarts.length === kartLists.length &&
     pickedWheels.length === wheelsList.length &&
@@ -168,7 +169,7 @@ function Karts() {
           t&apos;as fait pour en arriver là&#8239;.
         </p>
         <p>
-          T&apos;as bourriné le bouton comme un fous ou t&apos;as
+          T&apos;as bourriné le bouton comme un fou ou t&apos;as
           bidouillé&#8239;?
           <br />
           <span>
@@ -186,17 +187,18 @@ function Karts() {
     modalChild = (
       <>
         <p>
-          T&apos;as plus de choix pour les roues et les déltaplanes. C&apos;est
+          T&apos;as plus de choix pour les roues et les deltaplanes. C&apos;est
           un peu embêtant.
         </p>
         <p>
           Enfin, c&apos;est embêtant à moins que tu sois là juste pour la
-          sélection de kart. Si c&apos;est le cas, tu devrais fermer le modal,
-          et survoler les karts pour voir les boutons s&apos;afficher.
+          sélection de kart. Si c&apos;est le cas, tu devrais fermer le modal et
+          survoler les karts pour voir les boutons s&apos;afficher.
           <br />
           <span>
             De cette façon tu pourras randomiser que les karts. M&apos;enfin,
-            fais comme tu veux après. Tu peux réinitaliser ces deux trucs aussi.
+            fais comme tu veux après. Tu peux réinitialiser ces deux trucs
+            aussi.
           </span>
         </p>
       </>
@@ -210,14 +212,14 @@ function Karts() {
       <>
         <p>
           On se croirait presque dans Mario Party, avec un mini-jeu uniquement
-          en déltaplane.
+          en deltaplane.
         </p>
         <p>
-          Mais bon, ce site est pour Mario Kart, pas Mario Déltaplane, donc tu
+          Mais bon, ce site est pour Mario Kart, pas Mario deltaplane, donc tu
           devrais les réinitialiser.
           <br />
           <span>
-            Ou alors ton but c&apos;est juste de changer ton déltaplane, dans ce
+            Ou alors ton but c&apos;est juste de changer ton deltaplane, dans ce
             cas là, qui suis-je pour juger&#8239;?
           </span>
         </p>
@@ -227,11 +229,11 @@ function Karts() {
     pickedKarts.length === kartLists.length &&
     pickedGliders.length === glidersList.length
   ) {
-    modalTitle = "Pas de karts, pas de déltaplane, uh.";
+    modalTitle = "Pas de karts, pas de deltaplane, uh.";
     modalChild = (
       <>
         <p>
-          Bon, peut-être qu&apos;on s&apos;en fiche du déltaplane, mais puisque
+          Bon, peut-être qu&apos;on s&apos;en fiche du deltaplane, mais puisque
           mon but est de te prévenir de toute éventualité, bah me voilà quand
           même.
         </p>
@@ -251,28 +253,10 @@ function Karts() {
           partie la plus importante de ta compo.
         </p>
         <p>
-          Tu peux les réiniatliser facilement ici si tu le veux.
+          Tu peux les réinitialiser facilement ici si tu le veux.
           <br />
           <span>
             Et si tu veux pas, bah y a pas grand-chose de plus que je peux faire
-            pour toi.
-          </span>
-        </p>
-      </>
-    );
-  } else if (pickedKarts.length === kartLists.length) {
-    modalTitle = "Oops, pas sûr, mais ça va être dur sans karts";
-    modalChild = (
-      <>
-        <p>
-          Je veux pas t&apos;inquiéter hein, mais je crois que c&apos;est la
-          partie la plus importante de ta compo.
-        </p>
-        <p>
-          Tu peux les réiniatliser facilement ici si tu le veux.
-          <br />
-          <span>
-            Et si tu veux pas, bah y a pas grand chose de plus que je peux faire
             pour toi.
           </span>
         </p>
@@ -284,13 +268,13 @@ function Karts() {
       <>
         <p>
           L&apos;humour c&apos;est pas mon fort. Mais en tout cas, c&apos;est
-          sûr que ton kart va pas avancer sans roue.
+          sûr que ton kart va pas avancer sans roues.
         </p>
         <p>
           Avant que le jeu soit entièrement en anti-gravité, ou carrément avec
           des propulseurs, tu devrais réinitialiser les roues.
           <br />
-          <span>Je pense quand même que ma blague été drôle.</span>
+          <span>Je pense quand même que ma blague était drôle.</span>
         </p>
       </>
     );
@@ -299,17 +283,17 @@ function Karts() {
     modalChild = (
       <>
         <p>
-          Ouais... Je sais. Y a vraiment très de peu de parapentes, hein&#8239;?
+          Ouais... Je sais. Y a vraiment très peu de deltaplane, hein&#8239;?
         </p>
         <p>
           M&apos;enfin, il n&apos;y en a plus de disponible. Tu devrais les
-          réiniatliser.
+          réinitialiser.
         </p>
         <p>
           Ou alors tu t&apos;en fiches, et tu peux aussi fermer ce modal.
           <br />
           <span>
-            Entre nous, je crois que pas que ça fasse une grande différence.
+            Entre nous, je crois pas que ça fasse une grande différence.
           </span>
         </p>
       </>

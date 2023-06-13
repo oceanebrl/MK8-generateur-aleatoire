@@ -17,6 +17,7 @@ body {
   display: flex;
   flex-direction: column;
   background-image: url("/backgrounds/tires.jpg");
+  background-attachment: fixed;
 }
 
 main {

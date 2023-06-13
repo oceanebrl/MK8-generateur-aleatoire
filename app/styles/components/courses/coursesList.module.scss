@@ -1,0 +1,61 @@
+@import "../../utils/variables.scss", "../../utils/mixins.scss";
+
+.courses {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+}
+
+.cup {
+  display: flex;
+  flex-wrap: wrap;
+  width: 48%;
+  gap: 1rem;
+  position: relative;
+  justify-content: space-around;
+  align-items: center;
+  &__img {
+    cursor: pointer;
+    &.open {
+      position: absolute;
+      top: 50%;
+      right: 50%;
+      transform: translate(50%, -50%);
+      z-index: 2;
+      &:hover {
+        animation: rotate-infinite 2s infinite linear;
+      }
+    }
+  }
+  &__courses {
+    width: 46%;
+    opacity: 0;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+    &:hover {
+      z-index: 5;
+      flex-grow: 1;
+    }
+    &__img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  &.open {
+    .cup__courses {
+      animation: fade-in 0.5s ease forwards;
+      animation-delay: 0s;
+      &:nth-child(3) {
+        animation-delay: 0.1s;
+      }
+      &:nth-child(4) {
+        animation-delay: 0.2s;
+      }
+      &:nth-child(5) {
+        animation-delay: 0.3s;
+      }
+    }
+  }
+}
