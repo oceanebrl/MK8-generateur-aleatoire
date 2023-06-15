@@ -1,0 +1,26 @@
+@import "../../utils/variables.scss";
+
+.selectionWrap {
+  margin-bottom: 4rem;
+}
+
+.optionWrap {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  &__label {
+    font-size: 1.2rem;
+  }
+  &__number {
+    border-radius: 25px;
+    border: 2px solid $softColor;
+    padding: 1rem;
+    text-align: center;
+    color: $softColor;
+    font-size: 1.5rem;
+  }
+}

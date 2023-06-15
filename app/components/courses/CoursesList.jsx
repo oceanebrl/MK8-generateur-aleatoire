@@ -1,12 +1,11 @@
 "use client";
-import { useState } from "react";
 import Image from "next/image";
 import styles from "../../styles/components/courses/coursesList.module.scss";
 
 function CoursesList({ cups }) {
   return (
     <section className={styles.coursesWrap}>
-      {cups.map((cup, index) => (
+      {cups.map((cup) => (
         <div key={cup.id} className={styles.cup}>
           <div className={styles.cup__logo}>
             <Image
