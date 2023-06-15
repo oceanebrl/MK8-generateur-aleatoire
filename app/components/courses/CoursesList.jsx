@@ -4,57 +4,30 @@ import Image from "next/image";
 import styles from "../../styles/components/courses/coursesList.module.scss";
 
 function CoursesList({ cups }) {
-  const [openCups, setOpenCups] = useState(Array(cups.length).fill(true));
-
-  const handleCupOpen = (cupIndex) => {
-    setOpenCups((prevOpenCups) => {
-      const updatedOpenCups = [...prevOpenCups];
-      updatedOpenCups[cupIndex] = true;
-      return updatedOpenCups;
-    });
-  };
-
-  const handleCupClose = (cupIndex) => {
-    setOpenCups((prevOpenCups) => {
-      const updatedOpenCups = [...prevOpenCups];
-      updatedOpenCups[cupIndex] = false;
-      return updatedOpenCups;
-    });
-  };
-
   return (
-    <section className={styles.courses}>
+    <section className={styles.coursesWrap}>
       {cups.map((cup, index) => (
-        <div
-          key={cup.id}
-          className={`${styles.cup} ${openCups[index] ? styles.open : ""}`}>
-          <div
-            className={`${styles.cup__img} ${
-              openCups[index] ? styles.open : ""
-            }`}>
+        <div key={cup.id} className={styles.cup}>
+          <div className={styles.cup__logo}>
             <Image
               src={cup.image}
               alt={cup.name}
               title={cup.name}
               priority={true}
+              className={styles.cup__logo__img}
             />
           </div>
-          {openCups[index] &&
-            cup.courses.map((course) => (
-              <div
-                key={course.id}
-                className={`${styles.cup__courses} ${
-                  openCups[index] ? styles.open : ""
-                }`}>
-                <Image
-                  src={course.image}
-                  alt={course.name}
-                  className={styles.cup__courses__img}
-                  title={course.name}
-                  priority={true}
-                />
-              </div>
-            ))}
+          {cup.courses.map((course) => (
+            <div key={course.id} className={styles.cup__courses}>
+              <Image
+                src={course.image}
+                alt={course.name}
+                title={course.name}
+                priority={true}
+                className={styles.cup__courses__img}
+              />
+            </div>
+          ))}
         </div>
       ))}
     </section>

@@ -58,15 +58,15 @@
 
 @keyframes rotate-infinite {
   0% {
-    transform: translate(50%, -50%) rotate(-5deg);
+    transform: rotate(-5deg);
     transform-origin: center;
   }
   50% {
-    transform: translate(50%, -50%) rotate(5deg);
+    transform: rotate(5deg);
     transform-origin: center;
   }
   100% {
-    transform: translate(50%, -50%) rotate(-5deg);
+    transform: rotate(-5deg);
     transform-origin: center;
   }
 }
