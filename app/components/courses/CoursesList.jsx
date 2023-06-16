@@ -1,8 +1,11 @@
-"use client";
 import Image from "next/image";
-import styles from "../../styles/components/courses/coursesList.module.scss";
 
-function CoursesList({ cups }) {
+import styles from "../../styles/components/courses/coursesList.module.scss";
+import pickedStyle from "../../styles/modules/pickedStyle.module.scss";
+
+import checkMark from "@/public/check.png";
+
+function CoursesList({ cups, isCoursePicked, selectCourse }) {
   return (
     <section className={styles.coursesWrap}>
       {cups.map((cup) => (
@@ -17,13 +20,32 @@ function CoursesList({ cups }) {
             />
           </div>
           {cup.courses.map((course) => (
-            <div key={course.id} className={styles.cup__courses}>
+            <div
+              onClick={() => selectCourse(course)}
+              key={course.id}
+              className={`${styles.cup__courses} ${pickedStyle.item}`}>
+              <div className={styles.cup__courses__name}>
+                <p>{course.name}</p>
+              </div>
+              {isCoursePicked(course) && (
+                <Image
+                  src={checkMark}
+                  className={`${pickedStyle.item__check} ${styles.check}`}
+                  alt="Coche"
+                />
+              )}
               <Image
                 src={course.image}
                 alt={course.name}
                 title={course.name}
                 priority={true}
-                className={styles.cup__courses__img}
+                className={`${styles.cup__courses__img} ${
+                  pickedStyle.item__image
+                } ${
+                  isCoursePicked(course)
+                    ? `${pickedStyle.picked} ${styles.picked}`
+                    : ""
+                }`}
               />
             </div>
           ))}

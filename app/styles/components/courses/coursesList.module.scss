@@ -51,12 +51,36 @@
     flex: 0 1 80px;
     overflow: hidden;
     border-radius: 20px;
-    transition: all 0.3s ease;
     transform: scaleY(0.9);
+    overflow: hidden;
     cursor: pointer;
-    &:hover {
-      flex: 0 1 auto;
-      transform: scaleY(1);
+    &::after,
+    &::before {
+      display: none;
+    }
+    &:hover &__name {
+      transform: translateX(0);
+    }
+    &__name {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      background-color: rgba($mainColor, 80%);
+      transform: translateX(-100%);
+      transition: all 0.3s ease;
+      z-index: 2;
+      & p {
+        align-self: center;
+        color: #fff;
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-align: center;
+        @media screen and (max-width: 400px) {
+          font-size: 0.8rem;
+        }
+      }
     }
     &__img {
       width: 100%;
@@ -64,6 +88,13 @@
       object-fit: cover;
       border-radius: 20px;
       object-position: 80% 10%;
+      &.picked {
+        transform: scale(1);
+      }
     }
+  }
+
+  .check {
+    width: 3rem;
   }
 }

@@ -24,11 +24,32 @@ function Course() {
     setLastPickedCourses(savedLastrPickedCourses);
   }, []);
 
+  // on vient créer une fonction qui vérifie le nombre de courses restantes
+  // en fonction de ce que l'utilisateur veut comme nombre
+  // afin d'éviter les bugs. On le réutilise  dans l'input et le bouton
+  // random
+  const validateCourseSelection = (selectedCourses, remainingCourses) => {
+    if (remainingCourses === 0) {
+      alert(`Il n'y a plus aucune course.`);
+      return false;
+    } else if (selectedCourses > remainingCourses) {
+      alert(`Il n'y a pas plus de ${remainingCourses} courses restantes!`);
+      return false;
+    } else if (remainingCourses < 0) {
+      alert("Il n'y a plus aucune course. Tu devrais réinitialiser.");
+      return false;
+    }
+    return true;
+  };
+
   const pickRandomCourses = () => {
     // on vérifie les courses restantes pour éviter d'en sélectionner
     const remainingChoices = courses.filter(
       (course) => !pickedCourses.find((pickedCourse) => pickedCourse === course)
     );
+    if (!validateCourseSelection(courseNumberInput, remainingChoices.length)) {
+      return;
+    }
     const randomCourses = [];
     // on vient boucler notre sélection aléatoire en fonction
     // du nombre choisis par l'utilisateur.
@@ -39,8 +60,28 @@ function Course() {
       remainingChoices.splice(randomIndex, 1);
     }
     // on let met dans nos states
-    setPickedCourses([...pickedCourses, ...randomCourses]);
     setLastPickedCourses(randomCourses);
+  };
+
+  // fonction qui nous permet de sélectionner manuellement les courses,
+  // que ce soit dans l'apparition des courses aléatoires, ou bien dans les
+  // dans les coureses affichées dans la seconde section
+  const selectCourse = (course) => {
+    // on vérifies les courses déjà sélectionnées
+    const isCoursePicked = pickedCourses.find(
+      (pickedCourse) => pickedCourse.id === course.id
+    );
+    // si la course a déjà été sélectionnées, on la supprime
+    if (isCoursePicked) {
+      const updatedCourses = pickedCourses.filter(
+        (pickedCourse) => pickedCourse.id !== course.id
+      );
+      setPickedCourses(updatedCourses);
+    } else {
+      // dans le cas où la course n'a pas été sélectionnée,
+      // on renvoie les données avec la sélection
+      setPickedCourses([...pickedCourses, course]);
+    }
   };
 
   const resetCourses = () => {
@@ -57,6 +98,13 @@ function Course() {
     );
   });
 
+  // on vient vérifier les courses sélectionnées pour leur attribué un style
+  const isCoursePicked = (course) => {
+    return !!pickedCourses.find(
+      (pickedCourse) => pickedCourse.id === course.id
+    );
+  };
+
   return (
     <main>
       <h2>Choisis ta ou tes courses</h2>
@@ -69,8 +117,15 @@ function Course() {
           setCourseNumberInput={setCourseNumberInput}
           lastPickedCourses={lastPickedCourses}
           remainingCourses={remainingCourses}
+          validateCourseSelection={validateCourseSelection}
+          selectCourse={selectCourse}
+          isCoursePicked={isCoursePicked}
         />
-        <CoursesList cups={coursesList} />
+        <CoursesList
+          cups={coursesList}
+          isCoursePicked={isCoursePicked}
+          selectCourse={selectCourse}
+        />
       </section>
     </main>
   );

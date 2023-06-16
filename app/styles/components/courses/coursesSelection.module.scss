@@ -1,4 +1,4 @@
-@import "../../utils/variables.scss";
+@import "../../utils/variables.scss", "../../utils/mixins.scss";
 
 .selectionWrap {
   margin-bottom: 4rem;
@@ -9,6 +9,10 @@
   gap: 2rem;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 628px) {
+    flex-direction: column;
+  }
 }
 
 .input {
@@ -22,5 +26,82 @@
     text-align: center;
     color: $softColor;
     font-size: 1.5rem;
+  }
+  &__remainingCourses {
+    font-size: 1rem;
+    font-weight: 800;
+    color: $softColor;
+    font-style: italic;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
+  @media screen and (max-width: 394px) {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+    &__number {
+      font-size: 1rem;
+      padding: 0.8rem;
+    }
+    &__remainingCourses {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.lastCourses {
+  margin: 2rem 0 0 0;
+  @include smoothBoxShadows;
+  background-color: lighten($softColor, 23);
+  border: 1rem solid $bgMainColor;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  &.empty {
+    visibility: hidden;
+  }
+  &__wrap {
+    width: 15%;
+    height: auto;
+    position: relative;
+    cursor: pointer;
+    &__img {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 2px 4px #240a1c93;
+    }
+  }
+
+  .check {
+    width: 2.5rem;
+    top: 0;
+  }
+  @media screen and (max-width: 1100px) {
+    &__wrap {
+      width: 20%;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    &__wrap {
+      width: 25%;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    &__wrap {
+      width: 46%;
+    }
+  }
+
+  @media screen and (max-width: 295px) {
+    &__wrap {
+      width: 100%;
+    }
   }
 }
