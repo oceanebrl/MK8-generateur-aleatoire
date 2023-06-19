@@ -7,7 +7,7 @@ import checkMark from "@/public/check.png";
 
 function CoursesList({ cups, isCoursePicked, selectCourse }) {
   return (
-    <section className={styles.coursesWrap}>
+    <section className={styles.coursesWrap} draggable="none">
       {cups.map((cup) => (
         <div key={cup.id} className={styles.cup}>
           <div className={styles.cup__logo}>
@@ -17,6 +17,7 @@ function CoursesList({ cups, isCoursePicked, selectCourse }) {
               title={cup.name}
               priority={true}
               className={styles.cup__logo__img}
+              draggable="none"
             />
           </div>
           {cup.courses.map((course) => (

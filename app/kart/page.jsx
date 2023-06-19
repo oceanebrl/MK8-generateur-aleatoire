@@ -337,7 +337,7 @@ function Karts() {
           {modalChild}
         </Modal>
       )}
-      <section className={styles.pageWrap}>
+      <section className={styles.pageWrap} draggable="none">
         <div className={optionStyle.option}>
           <div className={optionStyle.option__btn}>
             <OptionBtn name="Choisis pour moi !" btnFunction={pickAllRandom} />

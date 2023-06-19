@@ -25,13 +25,6 @@ function Navigation() {
         Véhicule
       </Link>
       <Link
-        href="/kartndriver"
-        className={`${styles.nav__item}  ${
-          pathname === "/kartndriver/" ? styles.active : ""
-        }`}>
-        Pilote &amp; Véhicule
-      </Link>
-      <Link
         href="/courses"
         className={`${styles.nav__item}  ${
           pathname === "/courses/" ? styles.active : ""

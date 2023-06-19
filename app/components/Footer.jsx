@@ -5,8 +5,8 @@ function Footer() {
     <footer className={styles.footer}>
       <div className={styles.wrap}>
         <p>
-          <span className={styles.highlight}>Disclaimer</span>&#8239;: le site
-          est toujours en construction&#8239;!
+          <span className={styles.highlight}>Disclaimer</span>&#8239;: Site créé
+          par une fan, pour des fans&#8239;!
         </p>
         <p>
           Pour toutes informations ou suggestions, contactez-moi sur twitter, à{" "}
