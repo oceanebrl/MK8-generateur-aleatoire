@@ -5,7 +5,7 @@
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   @media screen and (max-width: 879px) {
     justify-content: space-around;
   }

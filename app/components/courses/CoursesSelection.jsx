@@ -57,13 +57,13 @@ function CoursesSelection({
           </label>
           <input
             className={styles.input__number}
-            id="courseNumber"
             type="number"
             value={courseNumberInput}
             max={remainingCourses}
             min="1"
             onChange={handleInput}
             onKeyDown={handleKeyDown}
+            autoComplete="off"
           />
           <p className={styles.input__remainingCourses}>
             {remainingChoicesPara()}

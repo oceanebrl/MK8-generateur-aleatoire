@@ -118,6 +118,18 @@ import circuitMarioDS from "@/public/courses/20-2_Circuit_Mario_DS.png";
 import stadeWaluigi from "@/public/courses/20-3_Stade_Waluigi.png";
 import poursuiteSingapour from "@/public/courses/20-4_Poursuite_à_Singapour.png";
 
+import plume from "@/public/cups/21_feather.png";
+import athenesAntique from "@/public/courses/21-1_Athènes_Antique.png";
+import paquebotDaisy from "@/public/courses/21-2_Paquebot_Daisy.png";
+import routeLune from "@/public/courses/21-3_Route_Claire_de_Lune.png";
+import proprete from "@/public/courses/21-4_Course_à_la_Propreté.png";
+
+import cerise from "@/public/cups/22_cherry.png";
+import la from "@/public/courses/22-1_Road-trip_à_Los_Angeles.png";
+import paysCrepuscule from "@/public/courses/22-2_Pays_Crépuscule.png";
+import capKoopa from "@/public/courses/22-3_Cap_Koopa.png";
+import vancouver from "@/public/courses/22-4_Virages_à_Vancouver.png";
+
 export const coursesList = [
   {
     id: "mushroom1",
@@ -656,6 +668,60 @@ export const coursesList = [
         id: "poursuiteSingapour4",
         image: poursuiteSingapour,
         name: "Poursuite à Singapour",
+      },
+    ],
+  },
+  {
+    id: "plume21",
+    image: plume,
+    name: "Coupe Plume",
+    courses: [
+      {
+        id: "athenesAntique1",
+        image: athenesAntique,
+        name: "Athènes Antique",
+      },
+      {
+        id: "paquebotDaisy2",
+        image: paquebotDaisy,
+        name: "Paquebot Daisy",
+      },
+      {
+        id: "routeLune3",
+        image: routeLune,
+        name: "Route Claire de Lune",
+      },
+      {
+        id: "proprete4",
+        image: proprete,
+        name: "Course à la Propreté",
+      },
+    ],
+  },
+  {
+    id: "cerise",
+    image: cerise,
+    name: "Coupe Cerise",
+    courses: [
+      {
+        id: "la1",
+        image: la,
+        name: "Road-trip à Los Angeles",
+      },
+      {
+        id: "paysCrepuscule2",
+        image: paysCrepuscule,
+        name: "Pays Crépuscule",
+      },
+      {
+        id: "capKoopa3",
+        image: capKoopa,
+        name: "Cap Koopa",
+      },
+      {
+        id: "vancouver4",
+        image: vancouver,
+        name: "Virages à Vancouver",
       },
     ],
   },

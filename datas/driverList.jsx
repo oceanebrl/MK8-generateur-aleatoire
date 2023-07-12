@@ -41,6 +41,9 @@ import villageoise from "@/public/drivers/40_villageoise.png";
 import marie from "@/public/drivers/41_marie.png";
 import mii from "@/public/drivers/42_mii.png";
 import birdo from "@/public/drivers/43_birdo.png";
+import floraPiranha from "@/public/drivers/44_floraPiranha.png";
+import wiggler from "@/public/drivers/45_wiggler.png";
+import kamek from "@/public/drivers/46_kamek.png";
 import questionMark from "@/public/questionMark.png";
 
 export const driverList = [
@@ -261,19 +264,19 @@ export const driverList = [
     image: birdo,
   },
   {
-    id: "44unknown",
-    name: "point d'interrogation",
-    image: questionMark,
+    id: "44floraPiranha",
+    name: "Flora Piranha",
+    image: floraPiranha,
   },
   {
-    id: "45unknown",
-    name: "point d'interrogation",
-    image: questionMark,
+    id: "45wiggler",
+    name: "Wiggler",
+    image: wiggler,
   },
   {
-    id: "46unknown",
-    name: "point d'interrogation",
-    image: questionMark,
+    id: "46kamek",
+    name: "Kamek",
+    image: kamek,
   },
   {
     id: "47unknown",

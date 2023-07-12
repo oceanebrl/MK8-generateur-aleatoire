@@ -6,7 +6,7 @@ function Footer() {
       <div className={styles.wrap}>
         <p>
           <span className={styles.highlight}>Disclaimer</span>&#8239;: Site créé
-          par une fan, pour des fans&#8239;!
+          par une fan, pour des fans.&#8239;!
         </p>
         <p>
           Pour toutes informations ou suggestions, contactez-moi sur twitter, à{" "}
