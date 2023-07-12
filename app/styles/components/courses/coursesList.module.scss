@@ -60,6 +60,7 @@
     }
     &:hover &__name {
       transform: translateX(0);
+      -webkit-transform: translateX(0);
     }
     &__name {
       position: absolute;
@@ -69,6 +70,7 @@
       justify-content: center;
       background-color: rgba($mainColor, 80%);
       transform: translateX(-100%);
+      -webkit-transform: translateX(-100%);
       transition: all 0.3s ease;
       z-index: 2;
       & p {
