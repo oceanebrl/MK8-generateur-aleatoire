@@ -72,6 +72,7 @@
       transform: translateX(-100%);
       -webkit-transform: translateX(-100%);
       transition: all 0.3s ease;
+      -webkit-transition: all 0.3s ease;
       z-index: 2;
       & p {
         align-self: center;
