@@ -45,7 +45,8 @@ function Course() {
   const pickRandomCourses = () => {
     // on vérifie les courses restantes pour éviter d'en sélectionner
     const remainingChoices = courses.filter(
-      (course) => !pickedCourses.find((pickedCourse) => pickedCourse === course)
+      (course) =>
+        !pickedCourses.find((pickedCourse) => pickedCourse.id === course.id)
     );
     if (!validateCourseSelection(courseNumberInput, remainingChoices.length)) {
       return;
