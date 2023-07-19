@@ -9,13 +9,9 @@ function Footer() {
           par une fan, pour des fans.&#8239;!
         </p>
         <p>
-          Pour toutes informations ou suggestions, contactez-moi sur twitter, à{" "}
-          <a href="https://twitter.com/Bocnee" className={styles.link}>
-            @Bocnee
-          </a>
-          , ou par mail à{" "}
-          <a href="mailto:bocnee.aurel@gmail.com" className={styles.link}>
-            bocnee.aurel@gmail.com
+          Pour toutes informations ou suggestions, contactez-moi par mail à{" "}
+          <a href="mailto:oceanebrl.94@gmail.com" className={styles.link}>
+            oceanebrl.94@gmail.com
           </a>
           .
         </p>
